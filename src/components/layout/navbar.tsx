@@ -208,7 +208,7 @@ export function Navbar() {
             <DesktopNav />
           </div>
 
-          <Button
+          {/* <Button
             asChild
             className={cn(
               "hidden rounded-full transition-all duration-300 lg:inline-flex",
@@ -218,7 +218,7 @@ export function Navbar() {
             <Link to={site.primaryCta.to} hash={site.primaryCta.hash}>
               {site.primaryCta.label}
             </Link>
-          </Button>
+          </Button> */}
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
