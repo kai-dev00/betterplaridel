@@ -68,3 +68,6 @@ export const site = {
     betterGov: "https://bettergov.ph",
   },
 } as const;
+
+// TEMPORARY: deliberate type error to test the PR checks. Delete before merging anything.
+export const ciTest: number = "this is not a number";
