@@ -1,8 +1,12 @@
 
 name: Discord PR Notifications
 
+# pull_request_target (not pull_request) so PRs from forks can read the webhook secret too.
+# It runs main's copy of this workflow in this repo's context. That is safe here because it
+# never checks out or runs the pull request's code, and the PR title only goes in through
+# env and jq --arg, never straight into the shell.
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - reopened
