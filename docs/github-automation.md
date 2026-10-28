@@ -115,6 +115,14 @@ Pull requests opened by **Dependabot**. Dependabot's runs can't read repository 
 empty and the run would fail), and weekly update pull requests would be noise. Because the check is on who
 **opened** the pull request, closing or merging a Dependabot pull request is not posted either.
 
+### Pull requests from forks
+
+It runs on `pull_request_target` instead of `pull_request`. With `pull_request`, a pull request from a fork gets
+no secrets, so the webhook was empty and the run failed (`curl: option : blank argument`). `pull_request_target`
+runs `main`'s copy of the workflow in this repository's context, so the secret is available. This is safe because
+the workflow never checks out or runs the pull request's code, and the title only reaches the shell through `env`
+and `jq --arg`. Because it uses `main`'s copy, changes to this file only take effect once they are merged.
+
 ### Setup
 
 Needs the repository secret **`DISCORD_WEBHOOK_URL`** (Settings → Secrets and variables → Actions), a webhook
