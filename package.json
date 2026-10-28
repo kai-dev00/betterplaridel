@@ -10,7 +10,7 @@
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
-    "@animate-ui/react": "^2.0.0",
+    "@animate-ui/react": "^2.3.0",
     "@tanstack/react-router": "^1.170.45",
     "@vis.gl/react-google-maps": "^1.10.1",
     "@xyflow/react": "^12.12.0",
