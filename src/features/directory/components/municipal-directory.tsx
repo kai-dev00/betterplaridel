@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { categories, entries, LAST_UPDATED, matchesQuery, TRUNKLINE, type DirectoryCategory } from "../directory-data";
 import { DirectoryCard } from "./directory-card";
 
-// Municipal Hall telephone directory, shown as a section of the Hotlines page.
+// Municipal Hall telephone directory, shown as a section of the Contacts page.
 // Filtered by the page's search box (`query`) and its own category buttons.
 export function MunicipalDirectory({ id, query }: { id?: string; query: string }) {
   const [category, setCategory] = useState<DirectoryCategory | "all">("all");

@@ -22,12 +22,12 @@ export const officialEmail = data.officialEmail;
 // Full list of national hotlines, linked under the agencies group.
 export const moreHotlinesUrl = data.moreHotlinesUrl;
 
-// TODO: verify — barangay hall numbers. Add a hallPhone to a barangay in barangays.json once it's confirmed.
-const barangayHalls: Hotline[] = barangayData.barangays.map((b) => ({
-  name: `Barangay ${b.name}`,
-  number: "TBA",
-  note: "Barangay hall",
-}));
+// Barangay hall numbers come from "hallPhones" in barangays.json; halls without one show "Number to follow".
+// TODO: verify — add the remaining barangays' numbers.
+const barangayHalls: Hotline[] = barangayData.barangays.map((b) => {
+  const [first = "TBA", ...rest] = ("hallPhones" in b ? b.hallPhones : []) as string[];
+  return { name: `Barangay ${b.name}`, number: first, otherNumbers: rest, note: "Barangay hall" };
+});
 
 export const hotlineGroups: HotlineGroup[] = data.groups.map(({ contactsFromBarangays, ...g }) => ({
   ...g,

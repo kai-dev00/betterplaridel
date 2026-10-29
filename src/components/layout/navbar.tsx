@@ -22,7 +22,7 @@ import { Menu } from "@/components/animate-ui/icons/menu";
 import { BrandLogo } from "@/components/shared/brand-logo";
 import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { site } from "@/site.config";
 
 type NavItem = (typeof site.nav)[number];
@@ -32,7 +32,7 @@ type SubItem = { label: string; to: string; description: string };
 const icons: Record<string, LucideIcon> = {
   Home: HomeIcon,
   Services: LayoutGridIcon,
-  Hotlines: PhoneIcon,
+  Contacts: PhoneIcon,
   Government: LandmarkIcon,
   Officials: UserRoundIcon,
   "Municipal Departments": Building2Icon,
@@ -208,18 +208,6 @@ export function Navbar() {
             <DesktopNav />
           </div>
 
-          <Button
-            asChild
-            className={cn(
-              "hidden rounded-full transition-all duration-300 lg:inline-flex",
-              scrolled ? "h-7 px-3 text-xs" : "h-9 px-4",
-            )}
-          >
-            <Link to={site.primaryCta.to} hash={site.primaryCta.hash}>
-              {site.primaryCta.label}
-            </Link>
-          </Button>
-
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button
@@ -242,13 +230,6 @@ export function Navbar() {
               <div className="flex flex-col gap-1 overflow-y-auto px-3 py-2">
                 <MobileNav onNavigate={() => setOpen(false)} />
               </div>
-              <SheetFooter className="border-t border-line">
-                <Button asChild size="lg" className="w-full rounded-full">
-                  <Link to={site.primaryCta.to} hash={site.primaryCta.hash} onClick={() => setOpen(false)}>
-                    {site.primaryCta.label}
-                  </Link>
-                </Button>
-              </SheetFooter>
             </SheetContent>
           </Sheet>
         </nav>

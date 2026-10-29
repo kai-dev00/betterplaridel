@@ -16,9 +16,9 @@ const sections = [hotlineGroups[0], { id: "directory", title: "Municipal Hall" }
 // Distance from the top of the window to just below the sticky search bar (under the 40px scrolled navbar).
 const SPY_OFFSET = 196;
 
-const route = getRouteApi("/hotlines");
+const route = getRouteApi("/contacts");
 
-export function HotlinesPage() {
+export function ContactsPage() {
   const { q: initialQuery } = route.useSearch();
   const [query, setQuery] = useState(initialQuery ?? "");
   const q = query.trim().toLowerCase();
@@ -59,7 +59,7 @@ export function HotlinesPage() {
   return (
     <>
       <PageHeader
-        title="Hotlines & Directory"
+        title="Contacts"
         subtitle="Numbers every Plaridelenyo can call. In a life-threatening emergency, call 911."
       />
       <section className="container-page pb-24">
@@ -70,7 +70,7 @@ export function HotlinesPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search an office, barangay, agency or local number…"
-            aria-label="Search hotlines"
+            aria-label="Search contacts"
             className="h-10 bg-background"
           />
           <nav aria-label="Hotline categories" className="flex gap-2 overflow-x-auto">
@@ -113,7 +113,7 @@ export function HotlinesPage() {
                 id={g.id}
                 className="mt-10 scroll-mt-44"
               >
-                <h2 className={`text-2xl font-bold tracking-tight ${emergency ? "text-red-600" : ""}`}>{g.title}</h2>
+                <h2 className="text-2xl font-bold tracking-tight">{g.title}</h2>
                 <p className="mt-1 text-muted-foreground">{g.description}</p>
                 {g.id === "agencies" && (
                   <a

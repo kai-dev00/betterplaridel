@@ -61,7 +61,8 @@
         {
           "name": "Plaridel Water District",
           "number": "(044) 795 0102",
-          "note": "PLAWD — water service, leaks and billing"
+          "note": "PLAWD — water service, leaks and billing",
+          "otherNumbers": ["0945-346-0808"]
         }
       ]
     },

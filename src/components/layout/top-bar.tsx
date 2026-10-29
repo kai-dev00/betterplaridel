@@ -12,8 +12,8 @@ import {
   SunIcon,
   type LucideIcon,
 } from "lucide-react";
-import { formatNumber, tel } from "@/features/hotlines/format";
-import { hotlineGroups, numberOf } from "@/features/hotlines/hotlines-data";
+import { formatNumber, tel } from "@/features/contacts/format";
+import { hotlineGroups, numberOf } from "@/features/contacts/hotlines-data";
 
 // Live data comes straight from two free services that need no key: Open-Meteo for the weather in Plaridel,
 // and Frankfurter for the European Central Bank's daily reference rates. Either one simply doesn't show if it

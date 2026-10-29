@@ -1,4 +1,4 @@
-import { HotlineCard } from "@/features/hotlines/components/hotline-card";
+import { HotlineCard } from "@/features/contacts/components/hotline-card";
 import { TRUNKLINE, type DirectoryEntry } from "../directory-data";
 
 // Same card as every other hotline; the call dials the trunkline, pauses (","), then the local.

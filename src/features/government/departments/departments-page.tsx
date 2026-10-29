@@ -10,7 +10,7 @@ export function DepartmentsPage() {
         title="Departments are coming soon"
         actions={
           <Button asChild variant="outline" className="rounded-full">
-            <Link to="/hotlines" hash="directory">
+            <Link to="/contacts" hash="directory">
               Open the Municipal Hall directory
             </Link>
           </Button>
