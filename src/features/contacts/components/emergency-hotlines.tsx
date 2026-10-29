@@ -22,8 +22,8 @@ export function EmergencyHotlines() {
       <div className="mt-10 text-center">
         <AnimateIcon animateOnHover asChild>
           <Button asChild size="lg" variant="outline" className="h-11 rounded-full px-6">
-            <Link to="/hotlines">
-              View all hotlines
+            <Link to="/contacts">
+              View all contacts
               <ArrowRight />
             </Link>
           </Button>

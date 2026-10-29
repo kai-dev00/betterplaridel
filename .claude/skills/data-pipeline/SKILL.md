@@ -38,7 +38,7 @@ source (website, PDF, API, spreadsheet)
   - Money is in pesos (`239250735`, not `"₱239.3M"`), and percents are fractions (`0.42`).
   - Dates are ISO (`2026-10-27`) unless the source only gives a month or year.
   - Phone numbers are stored as the source writes them (`"(044) 794-0119"`, `"*888"`, `"TBA"`).
-    `src/features/hotlines/format.ts` formats them for display (`formatNumber`) and dialing (`tel`).
+    `src/features/contacts/format.ts` formats them for display (`formatNumber`) and dialing (`tel`).
 - **Nothing derived:** no slugs, totals, shares, ranks you could compute, or display labels. TS computes those.
 - **IDs:**
   - Barangays are referenced by **PSGC code** (a string such as `"0301417001"`), never by name.
@@ -93,7 +93,7 @@ These stay in TS/TSX:
 | `income.json` | `statistics/income/income-data.ts` |
 | `elections.json` | `government/elections/election-data.ts` |
 | `officials.json` | `government/officials/official-data.ts` (municipal officials come from `elections.json`) |
-| `hotlines.json` | `hotlines/hotlines-data.ts` |
+| `hotlines.json` | `contacts/hotlines-data.ts` (shown on the Contacts page) |
 | `directory.json` | `directory/directory-data.ts` |
 | `services.json` | `services/services-data.ts` |
 | `announcements.json` | `announcements/announcements-data.ts` |

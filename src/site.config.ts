@@ -1,5 +1,5 @@
 // Site-wide text: branding, navigation and the shared call-to-action.
-// Feature-specific content lives in each feature's data.ts (e.g. src/features/hotlines/data.ts).
+// Feature-specific content lives in each feature's data.ts (e.g. src/features/contacts/hotlines-data.ts).
 // Anything marked "TODO: verify" is a placeholder — confirm it with the municipal hall before publishing.
 
 // The Statistics pages, listed in the navbar dropdown and as tabs on each page.
@@ -31,24 +31,22 @@ export const site = {
   nav: [
     { label: "Home", to: "/" },
     { label: "Services", to: "/services" },
-    { label: "Hotlines", to: "/hotlines" },
     { label: "Government", to: "/government", children: governmentPages },
     { label: "Statistics", to: "/statistics", children: statisticsModules },
     { label: "Announcements", to: "/announcements" },
+    { label: "Contacts", to: "/contacts" },
     { label: "About", to: "/about" },
   ],
-
-  primaryCta: { label: "Find a service", to: "/", hash: "services" },
 
   cta: {
     title: "May emergency o concern?",
     body: "Find the right office or hotline to call — from barangay halls to the Mayor's office.",
-    button: { label: "View hotlines", to: "/hotlines" },
+    button: { label: "View contacts", to: "/contacts" },
   },
 
   footer: {
     quickLinks: [
-      { label: "Hotlines", to: "/hotlines" },
+      { label: "Contacts", to: "/contacts" },
       { label: "Officials", to: "/government/officials" },
       { label: "Statistics", to: "/statistics" },
       { label: "About", to: "/about" },

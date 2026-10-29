@@ -9,7 +9,7 @@ import { serviceId, services } from "@/features/services/services-data";
 const popular = services.slice(0, 6);
 
 // Searches the services listed on the home page as you type. "Search the portal" jumps to the first matching
-// service, or, when none match, opens the hotlines directory searched for the same words.
+// service, or, when none match, opens the Contacts page searched for the same words.
 export function PortalSearch() {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export function PortalSearch() {
           onSubmit={(e) => {
             e.preventDefault();
             if (matches[0]) navigate({ to: "/", hash: serviceId(matches[0].title) });
-            else navigate({ to: "/hotlines", search: { q: text || undefined } });
+            else navigate({ to: "/contacts", search: { q: text || undefined } });
           }}
         >
           <label htmlFor="portal-search" className="font-semibold">
@@ -68,7 +68,7 @@ export function PortalSearch() {
               </ul>
             )}
             <Link
-              to="/hotlines"
+              to="/contacts"
               search={{ q: text }}
               className="mt-1 flex items-center gap-3 rounded-md p-2 text-sm transition-colors hover:bg-muted focus-visible:bg-muted"
             >
