@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { EmptyState } from "@/components/shared/empty-state";
 import { PageHeader } from "@/components/shared/page-header";
 import { chipClass } from "@/components/shared/chip";
+import { ScrollRow } from "@/components/shared/scroll-row";
+import { useShowSubNavbar, useStuckUnderNavbar } from "@/components/layout/sub-navbar";
 import { MunicipalDirectory } from "@/features/directory/components/municipal-directory";
 import { entries, matchesQuery } from "@/features/directory/directory-data";
 import { HotlineCard } from "./components/hotline-card";
@@ -14,9 +16,11 @@ import { hotlineGroups, moreHotlinesUrl, officialEmail } from "./hotlines-data";
 const sections = [hotlineGroups[0], { id: "directory", title: "Municipal Hall" }, ...hotlineGroups.slice(1)];
 
 // Distance from the top of the window to just below the sticky search bar (under the 40px scrolled navbar).
-const SPY_OFFSET = 196;
+const SPY_OFFSET = 176; // the sections' scroll-mt-44, so a chip lights up as its section lands under the bar
 
 const route = getRouteApi("/contacts");
+
+const TITLE = "Contacts";
 
 export function ContactsPage() {
   const { q: initialQuery } = route.useSearch();
@@ -56,15 +60,23 @@ export function ContactsPage() {
     return () => window.removeEventListener("scroll", update);
   }, [query]);
 
+  // While the search bar is stuck under the navbar, the navbar names the page beside its logo and drops its shadow.
+  const bar = useRef<HTMLDivElement>(null);
+  useShowSubNavbar(TITLE, useStuckUnderNavbar(bar));
+
   return (
     <>
       <PageHeader
-        title="Contacts"
+        title={TITLE}
         subtitle="Numbers every Plaridelenyo can call. In a life-threatening emergency, call 911."
       />
       <section className="container-page pb-24">
-        {/* Sticks just below the navbar, which is 40px tall once the page is scrolled. */}
-        <div className="sticky top-10 z-10 -mx-4 grid gap-4 border-b border-line bg-background/80 px-4 py-4 backdrop-blur">
+        {/* Sticks just below the navbar, which is 40px tall once the page is scrolled. While stuck, its solid
+            background also fills in behind the see-through navbar, so no page shows between the two. */}
+        <div
+          ref={bar}
+          className="sticky top-10 z-10 -mx-4 grid gap-3 border-b border-line bg-background px-4 pt-1 pb-3 before:absolute before:inset-x-0 before:bottom-full before:h-10 before:bg-background"
+        >
           <Input
             type="search"
             value={query}
@@ -73,18 +85,22 @@ export function ContactsPage() {
             aria-label="Search contacts"
             className="h-10 bg-background"
           />
-          <nav aria-label="Hotline categories" className="flex gap-2 overflow-x-auto">
-            {sections.map((s) => (
-              <a
-                key={s.id}
-                href={`#${s.id}`}
-                onClick={(e) => select(s.id, e)}
-                aria-current={active === s.id ? "true" : undefined}
-                className={chipClass(active === s.id)}
-              >
-                {s.title}
-              </a>
-            ))}
+          {/* min-w-0 lets the row shrink to the bar and scroll, instead of widening the page. */}
+          <nav aria-label="Hotline categories" className="min-w-0">
+            <ScrollRow active={active} label="categories">
+              {sections.map((s) => (
+                <li key={s.id} className="shrink-0">
+                  <a
+                    href={`#${s.id}`}
+                    onClick={(e) => select(s.id, e)}
+                    aria-current={active === s.id ? "true" : undefined}
+                    className={chipClass(active === s.id)}
+                  >
+                    {s.title}
+                  </a>
+                </li>
+              ))}
+            </ScrollRow>
           </nav>
         </div>
 

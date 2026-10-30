@@ -20,6 +20,7 @@ import {
 import { cn } from "cn";
 import { Menu } from "@/components/animate-ui/icons/menu";
 import { BrandLogo } from "@/components/shared/brand-logo";
+import { useSubNavbar } from "@/components/layout/sub-navbar";
 import { TopBar } from "@/components/layout/top-bar";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -165,6 +166,9 @@ function useScrolled() {
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const scrolled = useScrolled();
+  // A page's own bar sitting under this one (e.g. the Services chips): named beside the logo, with no shadow
+  // between the two.
+  const subNavbar = useSubNavbar();
   const home = useRouterState({ select: (state) => state.location.pathname === "/" });
 
   // At the top of a page the bar is tall and see-through under the top bar; once scrolled the top bar folds away
@@ -177,7 +181,8 @@ export function Navbar() {
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-300 motion-reduce:transition-none",
-          scrolled && "bg-background/85 shadow-xs shadow-black/3 backdrop-blur-md",
+          scrolled && "bg-background/85 backdrop-blur-md",
+          scrolled && !subNavbar && "shadow-xs shadow-black/3",
         )}
       >
         {/* A one-row grid folds smoothly from the top bar's height to nothing. */}
@@ -200,9 +205,22 @@ export function Navbar() {
             scrolled ? "h-10" : "h-20",
           )}
         >
-          <Link to="/" aria-label={`${site.name} home`} className="shrink-0">
-            <BrandLogo large={!scrolled} collapsed={scrolled} intro />
-          </Link>
+          <div className="flex min-w-0 items-center gap-3">
+            <Link to="/" aria-label={`${site.name} home`} className="shrink-0">
+              <BrandLogo large={!scrolled} collapsed={scrolled} intro />
+            </Link>
+            {/* The page's own title already names it for screen readers. */}
+            {subNavbar && (
+              <span
+                aria-hidden
+                // The logo's green and lettering, so it reads as part of the mark.
+                className="flex animate-in items-center gap-3 truncate text-lg leading-none font-bold tracking-[-0.03em] text-brand duration-300 fade-in-0 slide-in-from-left-2 motion-reduce:animate-none"
+              >
+                <span className="h-5 w-px shrink-0 bg-line" />
+                {subNavbar}
+              </span>
+            )}
+          </div>
 
           <div className="hidden items-center gap-1 lg:flex">
             <DesktopNav />
