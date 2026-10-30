@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { ChevronDownIcon } from "lucide-react";
+import { cn } from "cn";
 import { hero } from "../home-content";
 import { BanigTexture } from "./banig-texture";
 import { PortalSearch } from "./portal-search";
-import { RotatingWord } from "./rotating-word";
 
 // Fills the first screen; the rest of the page starts below the fold, with a button to scroll to it.
 export function Hero() {
@@ -31,11 +31,19 @@ export function Hero() {
         <div>
           <p className="text-sm font-semibold text-brand">{hero.eyebrow}</p>
           <h1 className="mt-4 text-4xl leading-[1.05] font-extrabold tracking-[-0.03em] text-brand-deep sm:text-6xl xl:text-7xl">
-            {/* Screen readers get the sentence once; the changing word is only shown. */}
-            <span className="sr-only">{`${hero.title.lead} ${hero.title.words[0]} ${hero.title.rest}`}</span>
-            <span aria-hidden>
-              {hero.title.lead} <RotatingWord words={hero.title.words} /> {hero.title.rest}
-            </span>
+            {/* Each line rises into place in turn. */}
+            {hero.title.map((line, i) => (
+              <span
+                key={line}
+                style={{ animationDelay: `${i * 150}ms` }}
+                className={cn(
+                  "block animate-in duration-700 fill-mode-backwards fade-in-0 slide-in-from-bottom-3 motion-reduce:animate-none",
+                  i === hero.title.length - 1 && "text-brand",
+                )}
+              >
+                {line}
+              </span>
+            ))}
           </h1>
           <p className="mt-8 max-w-xl text-lg text-pretty text-muted-foreground sm:text-xl">{hero.subtitle}</p>
         </div>

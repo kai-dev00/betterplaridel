@@ -7,8 +7,8 @@ import { fmt, LATEST, municipality } from "@/features/statistics/demographics/de
 
 export const hero = {
   eyebrow: "Municipality of Plaridel",
-  // The headline's second word slides between these, in turn.
-  title: { lead: "A", words: ["clearer", "better"], rest: "way to find Plaridel government information." },
+  // The headline, one line each; the last is highlighted.
+  title: ["Better access.", "Better answers.", "Better Plaridel."],
   subtitle: "Browse public services, offices and town statistics with the source always in view.",
   // The licence requires crediting the photographer and linking the licence; the file page does both.
   photo: {

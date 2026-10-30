@@ -33,7 +33,7 @@ export function LocationCard({
       onPointerEnter={() => onHover(true)}
       onPointerLeave={() => onHover(false)}
       className={cn(
-        "flex scroll-mt-32 gap-4 lg:scroll-mt-4 rounded-2xl border border-line bg-background p-4 shadow-xs transition",
+        "flex h-full gap-4 rounded-2xl border border-line bg-background p-4 shadow-xs transition",
         pin && "cursor-pointer hover:border-brand/40 hover:shadow-md",
         selected && "border-brand ring-4 ring-brand/15",
       )}
